@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 
 
     function AppView() {
-        this.isLoged = true;
+        this.isLoged = false;
         View.apply(this, arguments);
 
         this.menuToggle = false;
@@ -29,12 +29,14 @@ define(function(require, exports, module) {
 
         _createPageView.call(this);
         _createMenuView.call(this);
+        if(! this.isLoged){
+            _createLoginView.call(this);
+            _setLoginListeners.call(this);
+        }
 
         _setListeners.call(this);
         _handleSwipe.call(this);
-        if(! this.isLoged){
-            _createLoginView.call(this);
-        }
+
     }
 
     AppView.prototype = Object.create(View.prototype);
@@ -89,6 +91,29 @@ define(function(require, exports, module) {
             this.toggleMenu();
         }.bind(this));
     }
+
+    function _setLoginListeners() {
+        this.loginView.on('logedIn', function(data){
+
+            if(_checkLogin(data.userName, data.passWord)) {
+                this.loginMod.setTransform(Transform.translate(-500, 0, 0));
+            }
+            else {
+
+            }
+
+        }.bind(this));
+    }
+
+    function _checkLogin(username, password) {
+        if(username === password) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     function _handleSwipe() {
         var sync = new GenericSync(
             ['mouse', 'touch'],
