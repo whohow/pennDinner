@@ -7,7 +7,7 @@ define(function(require, exports, module) {
     function LocationView() {
         View.apply(this, arguments);
         var firstSurface = new Surface({
-            content: 'Location View',
+            content : './img/band.png',
             properties: {
                 size: [undefined, undefined],
                 color: 'white',

@@ -20,11 +20,12 @@ define(function(require, exports, module) {
     };
 
     var createBacking = function() {
-        var backSurface = new ImageSurface({
+        var backSurface;
+        backSurface = new ImageSurface({
             size: [320, 164],
-            content : './img/band.png',
-            properties : {
-                pointerEvents : 'none'
+            content: './img/band.png',
+            properties: {
+                pointerEvents: 'none'
             }
         });
 
