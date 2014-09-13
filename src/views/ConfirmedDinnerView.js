@@ -7,6 +7,7 @@ define(function(require, exports, module) {
 
     var EventsList = require('collections/EventsList');
     var ItemView = require('views/ItemView');
+    var ItemView2 = require('views/ItemView2');
     var Utility = require('famous/utilities/Utility');
 
 

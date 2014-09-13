@@ -23,7 +23,7 @@ define(function(require, exports, module) {
         var backSurface;
         backSurface = new ImageSurface({
             size: [320, 164],
-            content: './img/band.png',
+            content: './img/featured.png',
             properties: {
                 pointerEvents: 'none'
             }
@@ -35,7 +35,7 @@ define(function(require, exports, module) {
     var createNoteworthy = function() {
         var surface = new Surface({
             size: [true, true],
-            content: 'Noteworthy',
+            content: 'About',
             properties: {
                 color: 'black',
                 fontSize: this.options.fontSize + 'px',
@@ -54,7 +54,7 @@ define(function(require, exports, module) {
     var createStaffPicks = function() {
         var surface = new Surface({
             size: [undefined, true],
-            content: 'Timbrus staff picks',
+            content: 'Dine with other students',
             properties: {
                 color: 'white',
                 fontSize: this.options.fontSize + 'px',
