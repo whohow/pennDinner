@@ -10,6 +10,7 @@ define(function(require, exports, module) {
     var RequestDinnerView = require('views/RequestDinnerView');
     var ConfirmedDinnerView = require('views/ConfirmedDinnerView');
     var PendingDinnerView = require('views/PendingDinnerView');
+    var EventsList = require('collections/EventsList');
 
     function PageView() {
         View.apply(this, arguments);
@@ -42,7 +43,8 @@ define(function(require, exports, module) {
     function _createBacking() {
         var backing = new Surface({
             properties: {
-                backgroundColor: 'black',
+                // ------------------------- color
+                backgroundColor: 'white',
                 boxShadow: '0 0 20px rgba(0,0,0,0.5)'
             }
         });
@@ -114,12 +116,14 @@ define(function(require, exports, module) {
             size : [undefined, true],
             content : 'img/body.png'
         });
+        this.confirmedCollection = new EventsList();
+        this.pendingCollection = new EventsList();
         this.requestDinnerView = new RequestDinnerView();
-        this.confirmedDinnerView = new ConfirmedDinnerView();
-        this.pendingDinnerView = new PendingDinnerView();
+        this.confirmedDinnerView = new ConfirmedDinnerView({collection: this.confirmedCollection});
+        this.pendingDinnerView = new PendingDinnerView({collection: this.pendingCollection});
         this.lightbox = new Lightbox({
             inTransform: Transform.translate(0, 0),
-            outTransform: Transform.translate(0, 0),
+            outTransform: Transform.translate(0, 0)
         });
         this.layout.content.add(this.lightbox);
         this.lightbox.show(this.bodySurface);

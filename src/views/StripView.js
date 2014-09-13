@@ -33,7 +33,8 @@ define(function(require, exports, module) {
         this.backgroundSurface = new Surface({
             size: [this.options.width, this.options.height],
             properties: {
-                backgroundColor: 'black',
+                // ----------------------- color
+                backgroundColor: 'green',
                 boxShadow: '0 0 1px black'
             }
         });

@@ -61,7 +61,7 @@ define(function(require, exports, module) {
     function _setListeners(){
         this.nextButton.on('click', function(){
             console.log("?????????????????")
-            this._eventOutput.emit('next', {date: "some date"});
+            this._eventOutput.emit('next', {scheduledDate: "some date"});
         }.bind(this));
         this.preButton.on('click', function(){
             this._eventOutput.emit('pre', "cancelDate");

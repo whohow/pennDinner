@@ -9,8 +9,9 @@ define(function(require, exports, module) {
     var ItemView = require('views/ItemView');
     var Utility = require('famous/utilities/Utility');
 
-    function PendingDinnerView() {
+    function PendingDinnerView(options) {
         View.apply(this, arguments);
+        this.collection = options.collection;
         _createViews.call(this);
         _setListeners.call(this);
     }
@@ -20,7 +21,6 @@ define(function(require, exports, module) {
 
     PendingDinnerView.DEFAULT_OPTIONS = {};
     function _createViews(){
-        this.collection = new EventsList();
         this.itemViews = [];
         this.itemViews.push(new ItemView());
         this.itemViews.push(new ItemView());

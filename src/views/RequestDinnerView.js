@@ -73,6 +73,7 @@ define(function(require, exports, module) {
         }.bind(this));
         this.on('confirm', function(data){
             console.log(data);
+            
             // send request to server with data
         })
     }

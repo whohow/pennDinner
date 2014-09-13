@@ -55,7 +55,7 @@ define(function(require, exports, module) {
 
     function _setListeners(){
         this.nextButton.on('click', function(){
-            this._eventOutput.emit('next', {location: "some location"});
+            this._eventOutput.emit('next', {scheduledLocation: ["some location", "other"]});
         }.bind(this));
         this.preButton.on('click', function(){
             this._eventOutput.emit('pre', "cancelLocation");

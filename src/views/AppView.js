@@ -20,6 +20,7 @@ define(function(require, exports, module) {
     var LoginView      = require('views/LoginView');
 
 
+
     function AppView() {
         this.isLoged = false;
         View.apply(this, arguments);
