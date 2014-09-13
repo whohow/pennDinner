@@ -33,9 +33,6 @@ define(function(require, exports, module) {
             _createLoginView.call(this);
             _setLoginListeners.call(this);
         }
-        else {
-
-        };
 
         _setListeners.call(this);
         _handleSwipe.call(this);
@@ -93,18 +90,28 @@ define(function(require, exports, module) {
             }
             this.toggleMenu();
         }.bind(this));
-
-
-
     }
 
     function _setLoginListeners() {
         this.loginView.on('logedIn', function(data){
-//            this.loginMod.
-            //------------------------------------------
-            console.log(data);
-            this.loginMod.setTransform(Transform.translate(-500, 0, 0));
+
+            if(_checkLogin(data.userName, data.passWord)) {
+                this.loginMod.setTransform(Transform.translate(-500, 0, 0));
+            }
+            else {
+
+            }
+
         }.bind(this));
+    }
+
+    function _checkLogin(username, password) {
+        if(username === password) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     function _handleSwipe() {

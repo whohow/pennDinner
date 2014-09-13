@@ -8,17 +8,6 @@ define(function(require, exports, module) {
 
     function LoginView() {
         View.apply(this, arguments);
-//        var firstSurface = new Surface({
-//            content: 'Login',
-//            properties: {
-//                size: [undefined, undefined],
-//                color: 'white',
-//                textAlign: 'center',
-//                backgroundColor: '#FA5C4F'
-//            }
-//        });
-//        this.add(firstSurface);
-
         createBacking.call(this);
         _createButton.call(this);
         _setListeners.call(this);
@@ -39,17 +28,16 @@ define(function(require, exports, module) {
 
     function _createButton() {
         this.hamburgerSurface = new ImageSurface({
-            size: [44, 44],
-            content: 'img/submit.png'
+            size: [40, 40],
+            content: 'img/plate.png'
         });
 
         var stateModifierSubmit = new StateModifier({
             origin: [0.5, 0],
             align: [0.9, 0.5],
             opacity: 0.8,
-            transform: Transform.translate(5, window.innerHeight * 0.4, 0)
+            transform: Transform.translate(0, window.innerHeight * 0.355, 0)
         });
-
 
         this.inputSurface = new InputSurface({
             size: [174, 35],
@@ -88,15 +76,10 @@ define(function(require, exports, module) {
             transform: Transform.translate(3, window.innerHeight * 0.39, 0)
         });
 
-
         this.add(stateModifier).add(this.inputSurface);
         this.add(stateModifier2).add(this.inputSurface2);
         this.add(stateModifierSubmit).add(this.hamburgerSurface);
-
-
     };
-
-
 
 
     function _setListeners(){
@@ -106,7 +89,6 @@ define(function(require, exports, module) {
         }.bind(this));
 
     }
-
 
     LoginView.prototype = Object.create(View.prototype);
     LoginView.prototype.constructor = LoginView;
