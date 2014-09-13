@@ -97,10 +97,10 @@ define(function(require, exports, module) {
         this.loginView.on('logedIn', function(data){
 
             if(_checkLogin(data.userName, data.passWord)) {
-                this.loginMod.setTransform(Transform.translate(-500, 0, 0));
+                this.loginMod.setTransform(Transform.translate(-500, 0, 0), {duration: 1000, curve: 'easeOut'});
             }
             else {
-
+                this.loginMod.setTransform(Transform.translate(-500, 0, 0), {duration: 1000, curve: 'easeOut'});
             }
 
         }.bind(this));

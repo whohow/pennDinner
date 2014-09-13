@@ -42,17 +42,23 @@ define(function(require, exports, module) {
         this.transitionable = new Transitionable(0);
         this.mods.push(new Modifier({
             transform: function(){
-                return Transform.translate(this.transitionable.get() * window.innerWidth, 0, Math.abs(this.transitionable.get() * window.innerWidth))
+                return Transform.translate(this.transitionable.get() * window.innerWidth, 0, 0)
+            }.bind(this),
+
+            opacity: function(){
+                var result = (this.transitionable.get() + 1);
+                if(result < 0) return 0;
+                return result;
             }.bind(this)
         }));
         this.mods.push(new Modifier({
             transform: function(){
-                return Transform.translate((this.transitionable.get()+1) * window.innerWidth, 0, Math.abs((this.transitionable.get()+1) * window.innerWidth))
+                return Transform.translate((this.transitionable.get()+1) * window.innerWidth, 0, 0);
             }.bind(this)
         }));
         this.mods.push(new Modifier({
             transform: function(){
-                return Transform.translate((this.transitionable.get()+2) * window.innerWidth, 0, Math.abs((this.transitionable.get() + 2) * window.innerWidth))
+                return Transform.translate((this.transitionable.get()+2) * window.innerWidth, 0, 0);
             }.bind(this)
         }));
         for(var i = 0; i < 3; ++i){
