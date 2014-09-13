@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 
 
     function AppView() {
-        this.isLoged = false;
+        this.isLoged = true;
         View.apply(this, arguments);
 
         this.menuToggle = false;
