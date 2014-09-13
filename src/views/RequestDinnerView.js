@@ -5,6 +5,8 @@ define(function(require, exports, module) {
     var StateModifier = require('famous/modifiers/StateModifier');
     var Lightbox      = require('famous/views/Lightbox');
     var Scrollview    = require('famous/views/Scrollview');
+    var Transitionable  = require('famous/transitions/Transitionable');
+    var Modifier        = require('famous/core/Modifier');
 
     var TimeView  = require('views/TimeView');
     var LocationView  = require('views/LocationView');
@@ -27,6 +29,8 @@ define(function(require, exports, module) {
     function _createViews(){
         this.data = [];
         this.views = [];
+        this.transitionables = [];
+        this.mods = [];
         this.index = 0;
         this.preferenceCollection = new EventsList();
         this.locationView = new LocationView();
@@ -35,12 +39,37 @@ define(function(require, exports, module) {
         this.views.push(this.timeView);
         this.views.push(this.locationView);
         this.views.push(this.preferenceView);
-        this.lightbox = new Lightbox({
-            inTransform: Transform.translate(window.innerWidth, 0, 0),
-            outTransform: Transform.translate(-window.innerWidth, 0, 0)
-        });
-        this.lightbox.show(this.views[0]);
-        this.add(this.lightbox);
+        this.transitionable = new Transitionable(0);
+        this.mods.push(new Modifier({
+            transform: function(){
+                return Transform.translate(this.transitionable.get() * window.innerWidth, 0, Math.abs(this.transitionable.get() * window.innerWidth))
+            }.bind(this)
+        }));
+        this.mods.push(new Modifier({
+            transform: function(){
+                return Transform.translate((this.transitionable.get()+1) * window.innerWidth, 0, Math.abs((this.transitionable.get()+1) * window.innerWidth))
+            }.bind(this)
+        }));
+        this.mods.push(new Modifier({
+            transform: function(){
+                return Transform.translate((this.transitionable.get()+2) * window.innerWidth, 0, Math.abs((this.transitionable.get() + 2) * window.innerWidth))
+            }.bind(this)
+        }));
+        for(var i = 0; i < 3; ++i){
+            this.add(this.mods[i]).add(this.views[i]);
+        }
+
+//        this.lightbox1 = new Lightbox({
+//            inTransform: Transform.translate(window.innerWidth, 0, 0),
+//            outTransform: Transform.translate(-window.innerWidth, 0, 0)
+//        });
+//        this.lightbox2 = new Lightbox({
+//            inTransform: Transform.translate(-window.innerWidth, 0, 0),
+//            outTransform: Transform.translate(+window.innerWidth, 0, 0)
+//        });
+//        this.lightbox1.show(this.views[0]);
+//        this.add(this.lightbox1);
+//        this.add(this.lightbox2);
 //        this.scrollview = new Scrollview({
 //            direction: Utility.Direction.X
 //        });
@@ -60,26 +89,44 @@ define(function(require, exports, module) {
         }.bind(this));
         this.on('next', function(data){
             this.data.push(data);
+
+            this.transitionable.set(--this.index, {
+                        duration: 300,
+                        curve: 'easeOut'
+            });
+
 //            this.scrollview.goToNextPage();
             if(data.scheduledLocation){
                 this.preferenceCollection.reset();
+//                var str = JSON.stringfy(this.data);
+                // TODO put the data on the request
                 $.get("./src/data/preferenceData.json", function(data){
                     console.log(data);
                     this.preferenceCollection.add(data);
                     console.log(this.preferenceCollection);
                 }.bind(this));
             }
-            this.lightbox.hide();
-            this.lightbox.show(this.views[(++this.index) % this.views.length]);
+//            this.lightbox1.hide();
+//            this.lightbox2.hide();
+//            this.lightbox1.show(this.views[(++this.index) % this.views.length]);
         }.bind(this));
         this.on('pre', function(data){
+            this.transitionable.set(++this.index, {
+                duration: 300,
+                curve: 'easeOut'
+            });
             console.log(data);
-            this.data.pop();
-//            this.scrollview.goToPreviousPage();
-            this.lightbox.hide();
-            this.lightbox.show(this.views[(--this.index + this.views.length) % this.views.length])
+//            this.data.pop();
+////            this.scrollview.goToPreviousPage();
+//            this.lightbox1.hide();
+//            this.lightbox1.show(this.views[(--this.index + this.views.length) % this.views.length])
         }.bind(this));
         this.on('confirm', function(data){
+            this.index = 0;
+            this.transitionable.set(this.index, {
+                duration: 300,
+                curve: 'easeOut'
+            });
             console.log(data);
 
             // send request to server with data
