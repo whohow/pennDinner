@@ -44,11 +44,22 @@ define(function(require, exports, module) {
             return Transform.translate(0,offset);
         });
         this.add(this.scrollviewMod).add(this.scrollview);
-        Engine.pipe(this.scrollview);
+
     }
 
     function _setListeners(){
-
+        this.collection.on('all', function(event, model, collection){
+            console.log(event, model);
+            if(event === 'add'){
+                this.itemViews.push(new ItemView());
+            }
+            if(event === 'remove'){
+                while(this.itemViews.length > 0){
+                    this.itemViews.pop();
+                }
+            }
+        }.bind(this));
+        Engine.pipe(this.scrollview);
     }
 
     module.exports = ConfirmedDinnerView;
