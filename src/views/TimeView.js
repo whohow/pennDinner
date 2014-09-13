@@ -3,6 +3,7 @@ define(function(require, exports, module) {
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
+    var GridLayout    = require("famous/views/GridLayout");
 
     function TimeView() {
         View.apply(this, arguments);
@@ -16,16 +17,30 @@ define(function(require, exports, module) {
     TimeView.DEFAULT_OPTIONS = {};
 
     function _createViews(){
-        var firstSurface = new Surface({
-            content: 'Time View',
-            properties: {
-                size: [undefined, undefined],
-                color: 'white',
-                textAlign: 'center',
-                backgroundColor: '#FA5C4F'
-            }
+        var grid = new GridLayout({
+            dimensions: [7, 4]
         });
-        this.add(firstSurface);
+
+        var surfaces = [];
+        grid.sequenceFrom(surfaces);
+
+        for(var i = 0; i < 28; i++) {
+            surfaces.push(new Surface({
+                content: "panel " + (i + 1),
+                size: [window.innerWidth / 7, window.innerHeight/ 10],
+                properties: {
+                    textAlign: 'center'
+                }
+            }));
+        }
+
+        var stateModifier = new StateModifier({
+            align: [.5 , .4],
+            origin: [.5,.5],
+            size:[window.innerWidth, window.innerHeight * 0.6]
+        });
+
+        this.add(stateModifier).add(grid);
 
         this.nextMod = new StateModifier({
             align: [0.7, 0.7]
