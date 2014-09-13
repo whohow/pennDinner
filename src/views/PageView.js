@@ -93,12 +93,13 @@ define(function(require, exports, module) {
         var hamburgerModifier = new StateModifier({
             origin: [0, 0.5],
             align : [0, 0.5],
-            transform: Transform.translate(0, 0, 1)
+            transform: Transform.translate(0, 0, 2)
         });
 
         var searchModifier = new StateModifier({
             origin: [0.5, 0.5],
-            align : [0.5, 0.5]
+            align : [0.5, 0.5],
+            transform: Transform.translate(0, 0, 1.5)
         });
 
         var iconModifier = new StateModifier({

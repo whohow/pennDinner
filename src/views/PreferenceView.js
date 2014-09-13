@@ -1,4 +1,5 @@
 define(function(require, exports, module) {
+    var Engine          = require('famous/core/Engine');
     var View          = require('famous/core/View');
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
@@ -92,6 +93,7 @@ define(function(require, exports, module) {
                 }
             }
         }.bind(this));
+        Engine.pipe(this.scrollview);
     }
 
     module.exports = PreferenceView;

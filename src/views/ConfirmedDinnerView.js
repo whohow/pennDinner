@@ -1,4 +1,5 @@
 define(function(require, exports, module) {
+    var Engine          = require('famous/core/Engine');
     var View          = require('famous/core/View');
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
@@ -35,13 +36,15 @@ define(function(require, exports, module) {
         this.scrollviewMod = new StateModifier({
             align: [.5,.5],
             origin: [.5,.5],
+//            transform: Transform.translate(0, 0, 10),
             size: [undefined, undefined]
         });
         this.scrollview.sequenceFrom(this.itemViews);
         this.scrollview.outputFrom(function(offset) {
             return Transform.translate(0,offset);
-        }),
+        });
         this.add(this.scrollviewMod).add(this.scrollview);
+        Engine.pipe(this.scrollview);
     }
 
     function _setListeners(){

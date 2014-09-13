@@ -155,7 +155,7 @@ define(function(require, exports, module) {
     function _createLoginView(){
         this.loginView = new LoginView();
         this.loginMod = new StateModifier({
-            transform: Transform.translate(0, 0, 1)
+            transform: Transform.translate(0, 0, 10)
         });
         this.add(this.loginMod).add(this.loginView);
     }
