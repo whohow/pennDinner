@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 
 
     function AppView() {
-        this.isLoged = true;
+        this.isLoged = false;
         View.apply(this, arguments);
 
         this.menuToggle = false;
@@ -31,7 +31,11 @@ define(function(require, exports, module) {
         _createMenuView.call(this);
         if(! this.isLoged){
             _createLoginView.call(this);
+            _setLoginListeners.call(this);
         }
+        else {
+
+        };
 
         _setListeners.call(this);
         _handleSwipe.call(this);
@@ -90,19 +94,17 @@ define(function(require, exports, module) {
             this.toggleMenu();
         }.bind(this));
 
-        this.loginView.on('click', function(data){
-//            this.loginMod.
-            //------------------------------------------
-            console.log(data);
-            this.loginMod.setTransform(Transform.translate(-500, 0, 0));
-        }.bind(this))
+
+
+    }
+
+    function _setLoginListeners() {
         this.loginView.on('logedIn', function(data){
 //            this.loginMod.
             //------------------------------------------
             console.log(data);
             this.loginMod.setTransform(Transform.translate(-500, 0, 0));
-        }.bind(this))
-
+        }.bind(this));
     }
 
     function _handleSwipe() {
