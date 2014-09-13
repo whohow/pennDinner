@@ -6,6 +6,16 @@ define(function(require, exports, module) {
 
     function TimeView() {
         View.apply(this, arguments);
+        _createViews.call(this);
+        _setListeners.call(this);
+    }
+
+    TimeView.prototype = Object.create(View.prototype);
+    TimeView.prototype.constructor = TimeView;
+
+    TimeView.DEFAULT_OPTIONS = {};
+
+    function _createViews(){
         var firstSurface = new Surface({
             content: 'Time View',
             properties: {
@@ -16,12 +26,46 @@ define(function(require, exports, module) {
             }
         });
         this.add(firstSurface);
+
+        this.nextMod = new StateModifier({
+            align: [0.7, 0.7]
+        });
+        this.nextButton = new Surface({
+            content: "next",
+            size:[100, 70],
+            properties:{
+                zIndex: 10,
+
+                color: 'black',
+                textAlign: 'center',
+                backgroundColor: 'white'
+            }
+        });
+        this.preMod = new StateModifier({
+            align: [0.3, 0.7]
+        });
+        this.preButton = new Surface({
+            content: "previous",
+            size:[100, 70],
+            properties:{
+                zIndex: 10,
+                color: 'black',
+                textAlign: 'center',
+                backgroundColor: 'white'
+            }
+        });
+        this.add(this.preMod).add(this.preButton);
+        this.add(this.nextMod).add(this.nextButton);
     }
 
-    TimeView.prototype = Object.create(View.prototype);
-    TimeView.prototype.constructor = TimeView;
-
-    TimeView.DEFAULT_OPTIONS = {};
+    function _setListeners(){
+        this.nextButton.on('click', function(){
+            this._eventOutput.emit('next', "time");
+        }.bind(this));
+        this.preButton.on('click', function(){
+            this._eventOutput.emit('pre', "cancelTime");
+        }.bind(this))
+    }
 
     module.exports = TimeView;
 });
