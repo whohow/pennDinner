@@ -6,6 +6,17 @@ define(function(require, exports, module) {
 
     function PreferenceView() {
         View.apply(this, arguments);
+        _createViews.call(this);
+        _setListeners.call(this);
+    }
+
+
+    PreferenceView.prototype = Object.create(View.prototype);
+    PreferenceView.prototype.constructor = PreferenceView;
+
+    PreferenceView.DEFAULT_OPTIONS = {};
+
+    function _createViews(){
         var firstSurface = new Surface({
             content: 'Preference View',
             properties: {
@@ -16,12 +27,48 @@ define(function(require, exports, module) {
             }
         });
         this.add(firstSurface);
+
+        this.nextMod = new StateModifier({
+            align: [0.6, 0.7]
+        });
+        this.nextButton = new Surface({
+            content: "confirm",
+            size:[90, 70],
+            properties:{
+                zIndex: 10,
+
+                color: 'black',
+                textAlign: 'center',
+                backgroundColor: 'white'
+            }
+        });
+        this.preMod = new StateModifier({
+            align: [0.3, 0.7]
+        });
+        this.preButton = new Surface({
+            content: "previous",
+            size:[100, 70],
+            properties:{
+                zIndex: 10,
+                color: 'black',
+                textAlign: 'center',
+                backgroundColor: 'white'
+            }
+        });
+        this.add(this.preMod).add(this.preButton);
+        this.add(this.nextMod).add(this.nextButton);
     }
 
-    PreferenceView.prototype = Object.create(View.prototype);
-    PreferenceView.prototype.constructor = PreferenceView;
+    function _setListeners(){
+        this.nextButton.on('click', function(){
+            console.log("?????????????????")
+            this._eventOutput.emit('confirm', {preference: "some "});
+        }.bind(this));
+        this.preButton.on('click', function(){
+            this._eventOutput.emit('pre', "cancel Pre");
+        }.bind(this))
 
-    PreferenceView.DEFAULT_OPTIONS = {};
+    }
 
     module.exports = PreferenceView;
 });
