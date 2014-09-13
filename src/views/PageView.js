@@ -73,12 +73,12 @@ define(function(require, exports, module) {
 
         this.hamburgerSurface = new ImageSurface({
             size: [44, 44],
-            content : 'img/hamburger.png'
+            content : 'img/hamburger2.png'
         });
 
         var searchSurface = new ImageSurface({
-            size: [232, 44],
-            content : 'img/search.png'
+            size: [320, 44],
+            content : 'img/nav-bar.png'
         });
 
         var iconSurface = new ImageSurface({
@@ -92,7 +92,8 @@ define(function(require, exports, module) {
 
         var hamburgerModifier = new StateModifier({
             origin: [0, 0.5],
-            align : [0, 0.5]
+            align : [0, 0.5],
+            transform: Transform.translate(0, 0, 1)
         });
 
         var searchModifier = new StateModifier({
@@ -107,7 +108,7 @@ define(function(require, exports, module) {
 
 //        this.layout.header.add(backgroundModifier).add(backgroundSurface);
         this.layout.header.add(hamburgerModifier).add(this.hamburgerSurface);
-//        this.layout.header.add(searchModifier).add(searchSurface);
+        this.layout.header.add(searchModifier).add(searchSurface);
 //        this.layout.header.add(iconModifier).add(iconSurface);
     }
 
