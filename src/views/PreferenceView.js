@@ -3,8 +3,13 @@ define(function(require, exports, module) {
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
+    var Scrollview    = require('famous/views/Scrollview');
 
-    function PreferenceView() {
+    var ItemView = require('views/ItemView');
+    var Utility = require('famous/utilities/Utility');
+
+    function PreferenceView(options) {
+        this.collection = options.collection;
         View.apply(this, arguments);
         _createViews.call(this);
         _setListeners.call(this);
@@ -17,16 +22,25 @@ define(function(require, exports, module) {
     PreferenceView.DEFAULT_OPTIONS = {};
 
     function _createViews(){
-        var firstSurface = new Surface({
-            content: 'Preference View',
-            properties: {
-                size: [undefined, undefined],
-                color: 'white',
-                textAlign: 'center',
-                backgroundColor: '#FA5C4F'
-            }
+
+        this.itemViews = [];
+        this.itemViews.push(new ItemView());
+        this.itemViews.push(new ItemView());
+        this.itemViews.push(new ItemView());
+
+        this.scrollview = new Scrollview({
+            direction: Utility.Direction.Y
         });
-        this.add(firstSurface);
+        this.scrollviewMod = new StateModifier({
+            align: [.5,.5],
+            origin: [.5,.5],
+            size: [undefined, undefined]
+        });
+        this.scrollview.sequenceFrom(this.itemViews);
+        this.scrollview.outputFrom(function(offset) {
+            return Transform.translate(0,offset);
+        });
+        this.add(this.scrollviewMod).add(this.scrollview);
 
         this.nextMod = new StateModifier({
             align: [0.6, 0.7]
@@ -61,13 +75,23 @@ define(function(require, exports, module) {
 
     function _setListeners(){
         this.nextButton.on('click', function(){
-            console.log("?????????????????")
             this._eventOutput.emit('confirm', {preference: "some "});
         }.bind(this));
         this.preButton.on('click', function(){
             this._eventOutput.emit('pre', "cancel Pre");
-        }.bind(this))
+        }.bind(this));
 
+        this.collection.on('all', function(event, model, collection){
+            console.log(event, model);
+            if(event === 'add'){
+                this.itemViews.push(new ItemView());
+            }
+            if(event === 'reset'){
+                while(this.itemViews.length > 0){
+                    this.itemViews.pop();
+                }
+            }
+        }.bind(this));
     }
 
     module.exports = PreferenceView;
