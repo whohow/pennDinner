@@ -59,13 +59,14 @@ define(function(require, exports, module) {
             view.pipe(this._eventOutput);
         }.bind(this));
         this.on('next', function(data){
-            console.log(data);
             this.data.push(data);
 //            this.scrollview.goToNextPage();
             if(data.scheduledLocation){
                 this.preferenceCollection.reset();
-                $.get("./data/preferenceData", function(data){
+                $.get("./src/data/preferenceData.json", function(data){
+                    console.log(data);
                     this.preferenceCollection.add(data);
+                    console.log(this.preferenceCollection);
                 }.bind(this));
             }
             this.lightbox.hide();

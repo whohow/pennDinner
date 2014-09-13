@@ -113,10 +113,6 @@ define(function(require, exports, module) {
     }
 
     function _createBody() {
-        this.bodySurface = new ImageSurface({
-            size : [undefined, true],
-            content : 'img/body.png'
-        });
         this.confirmedCollection = new EventsList();
         this.pendingCollection = new EventsList();
         this.requestDinnerView = new RequestDinnerView();
@@ -127,7 +123,7 @@ define(function(require, exports, module) {
             outTransform: Transform.translate(0, 0)
         });
         this.layout.content.add(this.lightbox);
-        this.lightbox.show(this.bodySurface);
+        this.lightbox.show(this.requestDinnerView);
     }
 
     function _setListeners() {
@@ -135,7 +131,7 @@ define(function(require, exports, module) {
             this._eventOutput.emit('menuToggle');
         }.bind(this));
 
-        this.bodySurface.pipe(this._eventOutput);
+        this.requestDinnerView.views[0].pipe(this._eventOutput);
     }
 
     module.exports = PageView;

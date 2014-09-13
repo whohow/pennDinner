@@ -3,10 +3,10 @@ define(function(require, exports, module) {
 
     //---------------------------- localStorage
     var EventsList = Backbone.Collection.extend({
-        model: Event,
-        comparator: function () {
-            return Event.get('date');
-        }
+        model: Event
+//        comparator: function (event) {
+//            return event.get('date');
+//        }
 //        strategies: {
 //            firstName: function (person) { return person.get("firstName"); },
 //            lastName: function (person) { return person.get("lastName"); },
