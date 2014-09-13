@@ -25,6 +25,7 @@ define(function(require, exports, module) {
         this.itemViews.push(new ItemView());
         this.itemViews.push(new ItemView());
         this.itemViews.push(new ItemView());
+        this.itemViews.push(new ItemView());
 
         this.scrollview = new Scrollview({
             direction: Utility.Direction.Y
