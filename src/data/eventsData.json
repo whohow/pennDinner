@@ -1,0 +1,9 @@
+{
+    "confirmation": {
+        "date": "d",
+        "restaurant": "restaurant",
+        "participants": ["somebody", "some"],
+        "host": "somebody"
+    }
+}
+

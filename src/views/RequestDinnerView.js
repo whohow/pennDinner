@@ -28,9 +28,10 @@ define(function(require, exports, module) {
         this.data = [];
         this.views = [];
         this.index = 0;
+        this.preferenceCollection = new EventsList();
         this.locationView = new LocationView();
         this.timeView = new TimeView();
-        this.preferenceView = new PreferenceView();
+        this.preferenceView = new PreferenceView({collection:  this.preferenceCollection});
         this.views.push(this.timeView);
         this.views.push(this.locationView);
         this.views.push(this.preferenceView);
@@ -61,6 +62,12 @@ define(function(require, exports, module) {
             console.log(data);
             this.data.push(data);
 //            this.scrollview.goToNextPage();
+            if(data.scheduledLocation){
+                this.preferenceCollection.reset();
+                $.get("./data/preferenceData", function(data){
+                    this.preferenceCollection.add(data);
+                }.bind(this));
+            }
             this.lightbox.hide();
             this.lightbox.show(this.views[(++this.index) % this.views.length]);
         }.bind(this));
@@ -73,7 +80,7 @@ define(function(require, exports, module) {
         }.bind(this));
         this.on('confirm', function(data){
             console.log(data);
-            
+
             // send request to server with data
         })
     }

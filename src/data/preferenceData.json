@@ -1,0 +1,11 @@
+define(function(require, exports, module) {
+    module.exports = [
+        {restaurant:'restaurant', information: "some"},
+        {restaurant:'restaurant', information: "other"},
+        {restaurant:'restaurant', information: 'another'},
+        {restaurant:'restaurant', information: 'hello'},
+        {restaurant:'restaurant', information: "other"},
+        {restaurant:'restaurant', information: 'another'},
+        {restaurant:'restaurant', information: 'hello'}
+    ];
+});
