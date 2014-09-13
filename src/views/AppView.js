@@ -17,8 +17,11 @@ define(function(require, exports, module) {
     var MenuView      = require('views/MenuView');
     var StripData     = require('data/StripData');
     var EmptyView      = require('views/EmptyView');
+    var LoginView      = require('views/LoginView');
+
 
     function AppView() {
+        this.isLoged = false;
         View.apply(this, arguments);
 
         this.menuToggle = false;
@@ -29,6 +32,9 @@ define(function(require, exports, module) {
 
         _setListeners.call(this);
         _handleSwipe.call(this);
+        if(! this.isLoged){
+            _createLoginView.call(this);
+        }
     }
 
     AppView.prototype = Object.create(View.prototype);
@@ -120,6 +126,13 @@ define(function(require, exports, module) {
         }).bind(this));
     }
 
+    function _createLoginView(){
+        this.loginView = new LoginView();
+        this.loginMod = new StateModifier({
+            transform: Transform.translate(0, 0, 1)
+        });
+        this.add(this.loginMod).add(this.loginView);
+    }
     AppView.prototype.toggleMenu = function() {
         if(this.menuToggle) {
             this.slideLeft();
