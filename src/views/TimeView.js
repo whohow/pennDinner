@@ -31,21 +31,21 @@ define(function(require, exports, module) {
             align: [0.7, 0.7]
         });
         this.nextButton = new Surface({
-            content: "next",
+            content: "<i class='fa fa-chevron-right fa-5x'></i>",
             size:[100, 70],
             properties:{
                 zIndex: 10,
 
                 color: 'black',
                 textAlign: 'center',
-                backgroundColor: 'white'
+                backgroundColor: 'transparent'
             }
         });
         this.preMod = new StateModifier({
             align: [0.3, 0.7]
         });
         this.preButton = new Surface({
-            content: "previous",
+            content: "<i class='fa fa-chevron-left fa-5x'></i>",
             size:[100, 70],
             properties:{
                 zIndex: 10,
