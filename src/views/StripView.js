@@ -34,7 +34,7 @@ define(function(require, exports, module) {
             size: [this.options.width, this.options.height],
             properties: {
                 // ----------------------- color
-                backgroundColor: 'green',
+                backgroundColor: '#FF9900',
                 boxShadow: '0 0 1px black'
             }
         });

@@ -3,7 +3,7 @@ define(function(require, exports, module) {
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
-    var GridLayout    = require("famous/views/GridLayout");
+    var GridLayout    = require('famous/views/GridLayout')
 
     function TimeView() {
         View.apply(this, arguments);
@@ -43,11 +43,11 @@ define(function(require, exports, module) {
         this.add(stateModifier).add(grid);
 
         this.nextMod = new StateModifier({
-            align: [0.7, 0.7]
+            align: [0.75, 0.85]
         });
         this.nextButton = new Surface({
-            content: "<i class='fa fa-chevron-right fa-5x'></i>",
-            size:[100, 70],
+            content: "<i class='fa fa fa-chevron-right fa-4x'></i>",
+            size:[100, 100],
             properties:{
                 zIndex: 10,
 
@@ -56,20 +56,8 @@ define(function(require, exports, module) {
                 backgroundColor: 'transparent'
             }
         });
-        this.preMod = new StateModifier({
-            align: [0.3, 0.7]
-        });
-        this.preButton = new Surface({
-            content: "<i class='fa fa-chevron-left fa-5x'></i>",
-            size:[100, 70],
-            properties:{
-                zIndex: 10,
-                color: 'black',
-                textAlign: 'center',
-                backgroundColor: 'white'
-            }
-        });
-//        this.add(this.preMod).add(this.preButton);
+
+
         this.add(this.nextMod).add(this.nextButton);
     }
 

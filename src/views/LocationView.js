@@ -12,21 +12,21 @@ define(function(require, exports, module) {
 
     function _createViews(){
         var firstSurface = new Surface({
-            content: 'Location View',
+            content: 'Select the locations you would like to have dinner',
             properties: {
                 size: [undefined, undefined],
                 color: 'white',
                 textAlign: 'center',
-                backgroundColor: '#FA5C4F'
+                backgroundColor: '#FF9900'
             }
         });
         this.add(firstSurface);
 
         this.nextMod = new StateModifier({
-            align: [0.7, 0.7]
+            align: [0.75, 0.85]
         });
         this.nextButton = new Surface({
-            content: "<i class='fa fa-chevron-right fa-5x'></i>",
+            content: "<i class='fa fa-chevron-right fa-4x'></i>",
             size:[100, 70],
             properties:{
                 zIndex: 10,
@@ -37,10 +37,10 @@ define(function(require, exports, module) {
             }
         });
         this.preMod = new StateModifier({
-            align: [0.3, 0.7]
+            align: [0.25, 0.85]
         });
         this.preButton = new Surface({
-            content: "<i class='fa fa-chevron-left fa-5x'></i>",
+            content: "<i class='fa fa-chevron-left fa-4x'></i>",
             size:[100, 70],
             properties:{
                 zIndex: 10,

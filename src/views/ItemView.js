@@ -8,19 +8,16 @@ define(function(require, exports, module) {
     function ItemView() {
         View.apply(this, arguments);
         var firstSurface = new Surface({
-            content: '<style type="text/css">.bgimg {background-image: url(./img/event_background_green.png);}</style><div class="bgimg" style="height:100px">div with background</div>',
+            content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_light_green.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>",
             size: [undefined, 100],
             properties: {
                 size: [undefined, undefined],
                 color: 'white',
                 textAlign: 'center',
-                backgroundColor: 'white'
+                backgroundColor: 'transparent'
             }
         });
         this.add(firstSurface);
-
-//        createBacking.call(this);
-
     }
 
 

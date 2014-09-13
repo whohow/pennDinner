@@ -16,6 +16,7 @@ define(function(require, exports, module) {
         _setListeners.call(this);
     }
 
+    // Please indicate your restaurants preferences
 
     PreferenceView.prototype = Object.create(View.prototype);
     PreferenceView.prototype.constructor = PreferenceView;
@@ -44,10 +45,10 @@ define(function(require, exports, module) {
         this.add(this.scrollviewMod).add(this.scrollview);
 
         this.nextMod = new StateModifier({
-            align: [0.6, 0.7]
+            align: [0.75, 0.85]
         });
         this.nextButton = new Surface({
-            content: "<i class='fa fa-chevron-right fa-5x'></i>",
+            content: "<i class='fa fa-chevron-right fa-4x'></i>",
             size:[90, 70],
             properties:{
                 zIndex: 10,
@@ -58,10 +59,10 @@ define(function(require, exports, module) {
             }
         });
         this.preMod = new StateModifier({
-            align: [0.3, 0.7]
+            align: [0.25, 0.85]
         });
         this.preButton = new Surface({
-            content: "<i class='fa fa-chevron-left fa-5x'></i>",
+            content: "<i class='fa fa-chevron-left fa-4x'></i>",
             size:[100, 70],
             properties:{
                 zIndex: 10,
