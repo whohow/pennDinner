@@ -18,12 +18,12 @@ define(function(require, exports, module) {
 
     function _createViews(){
         var surfaceMod = new StateModifier({
-           align: [0.5, 0.04],
+           align: [0.5, 0.13],
            origin: [.5,.5]
         });
 
         var firstSurface = new Surface({
-            content: 'hello world',
+            content: 'Select the day you want to attend dinner',
             size:[window.innerWidth, 40],
             properties: {
                 size: [undefined, undefined],
@@ -34,13 +34,13 @@ define(function(require, exports, module) {
         });
         this.add(surfaceMod).add(firstSurface);
         var grid = new GridLayout({
-            dimensions: [7, 4]
+            dimensions: [7, 5]
         });
 
         var surfaces = [];
         grid.sequenceFrom(surfaces);
 
-        for(var i = 0; i < 28; i++) {
+        for(var i = 0; i < 31; i++) {
             if(i == 0) {
                 surfaces.push(new Surface({
                     content: "",
@@ -64,9 +64,9 @@ define(function(require, exports, module) {
 
 
         var stateModifier = new StateModifier({
-            align: [.5 , .4],
+            align: [.5 , .5],
             origin: [.5,.5],
-            size:[window.innerWidth, window.innerHeight * 0.6]
+            size:[window.innerWidth * 0.95, window.innerHeight * 0.5]
         });
 
         this.add(stateModifier).add(grid);
