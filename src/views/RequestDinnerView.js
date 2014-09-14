@@ -35,7 +35,7 @@ define(function(require, exports, module) {
         this.preferenceCollection = new EventsList();
         this.locationCollection = new EventsList();
         this.locationView = new LocationView({collection: this.locationCollection});
-        $.get('src/data/preferenceData.json', function(data){
+        $.get('src/data/locations.json', function(data){
             this.locationCollection.add(data);
         }.bind(this));
         this.timeView = new TimeView();
@@ -99,15 +99,16 @@ define(function(require, exports, module) {
                         curve: 'easeOut'
             });
 
+            if(data.scheduledDate){
+                this.locationView.setDate(data.scheduledDate);
+            }
 //            this.scrollview.goToNextPage();
             if(data.scheduledLocation){
                 this.preferenceCollection.reset();
 //                var str = JSON.stringfy(this.data);
                 // TODO put the data on the request
-                $.get("./src/data/preferenceData.json", function(data){
-                    console.log(data);
-                    this.preferenceCollection.add(data);
-                    console.log(this.preferenceCollection);
+                $.get("./src/data/restaurant.json", function(d){
+                    console.log(this.data[this.data.length - 1]);
                 }.bind(this));
             }
 //            this.lightbox1.hide();

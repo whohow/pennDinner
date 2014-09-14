@@ -37,12 +37,12 @@ define(function(require, exports, module) {
             dimensions: [7, 5]
         });
 
-        var surfaces = [];
-        grid.sequenceFrom(surfaces);
+        this.surfaces = [];
+        grid.sequenceFrom(this.surfaces);
 
         for(var i = 0; i < 31; i++) {
             if(i == 0) {
-                surfaces.push(new Surface({
+                this.surfaces.push(new Surface({
                     content: "",
                     size: [window.innerWidth / 7, window.innerHeight/ 10],
                     properties: {
@@ -51,7 +51,7 @@ define(function(require, exports, module) {
                 }));
             }
             else {
-                surfaces.push(new Surface({
+                this.surfaces.push(new Surface({
                     content: "" + i,
                     size: [window.innerWidth / 7, window.innerHeight/ 10],
                     properties: {
@@ -87,13 +87,20 @@ define(function(require, exports, module) {
         });
 
 
-        this.add(this.nextMod).add(this.nextButton);
+//        this.add(this.nextMod).add(this.nextButton);
     }
 
     function _setListeners(){
         this.nextButton.on('click', function(){
-            this._eventOutput.emit('next', {scheduledDate: "some date"});
+
         }.bind(this));
+
+        _.each(this.surfaces, function(surface){
+            surface.on('click', function(){
+                var string = surface.getContent();
+                this._eventOutput.emit('next', {scheduledDate: string});
+            }.bind(this))
+        }.bind(this))
 
     }
 

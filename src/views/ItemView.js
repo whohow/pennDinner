@@ -16,7 +16,7 @@ define(function(require, exports, module) {
         this.isPreferred = false;
 
         this.firstSurface = new Surface({
-            content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>",
+            content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" class=\"card\" style=\"height:100px\">div with background</div>",
             size: [undefined, 100],
             properties: {
                 textAlign: 'center',
@@ -27,8 +27,13 @@ define(function(require, exports, module) {
 //     this.model.get('title') return string of title
         // content
 
+
         var titleString = "Test Data A";
         var contentString = "Test Content.";
+        if(this.model.get('location')){
+            titleString = this.model.get('location');
+            contentString = "";
+        }
 
         if(this.isPreferred) {
             this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
@@ -38,8 +43,6 @@ define(function(require, exports, module) {
         }
 
         _setListeners.call(this);
-
-
     }
 
 

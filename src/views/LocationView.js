@@ -17,7 +17,7 @@ define(function(require, exports, module) {
     }
 
     function _createViews(){
-        var firstSurface = new Surface({
+        this.firstSurface = new Surface({
             content: 'Select the locations you would like to have dinner',
             properties: {
                 size: [undefined, undefined],
@@ -32,7 +32,7 @@ define(function(require, exports, module) {
             origin: [.5,.5],
             size: [undefined, undefined]
         });
-        this.add(this.firstSurfaceMod).add(firstSurface);
+        this.add(this.firstSurfaceMod).add(this.firstSurface);
 
         this.itemViews = [];
 //        this.itemViews.push(new ItemView());
@@ -77,7 +77,7 @@ define(function(require, exports, module) {
             }
         });
         this.preMod = new StateModifier({
-            align: [0.25, 0.9]
+            align: [0.25, 0.2]
         });
         this.preButton = new Surface({
             content: "<i class='fa fa-chevron-left fa-2x'></i>",
@@ -90,7 +90,7 @@ define(function(require, exports, module) {
             }
         });
         this.add(this.preMod).add(this.preButton);
-        this.add(this.nextMod).add(this.nextButton);
+//        this.add(this.nextMod).add(this.nextButton);
     }
 
     function _setListeners(){
@@ -114,15 +114,18 @@ define(function(require, exports, module) {
                 var item = new ItemView({model: model});
                 this.itemViews.push(item);
                 item._eventOutput.on('click', function(){
-                    if(item.isPreferred) {
-                        item.isPreferred = false;
-                        item.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
-                    }
-                    else {
-                        item.isPreferred = true;
-                        item.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">University City</div>");
-                    }
+                    this._eventOutput.emit('next', {scheduledLocation: model.get('location')});
                 }.bind(this));
+//                item._eventOutput.on('click', function(){
+//                    if(item.isPreferred) {
+//                        item.isPreferred = false;
+//                        item.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+//                    }
+//                    else {
+//                        item.isPreferred = true;
+//                        item.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">University City</div>");
+//                    }
+//                }.bind(this));
             }
             if(event === 'remove'){
                 while(this.itemViews.length > 0){
@@ -147,6 +150,9 @@ define(function(require, exports, module) {
     LocationView.prototype.constructor = LocationView;
 
     LocationView.DEFAULT_OPTIONS = {};
+    LocationView.prototype.setDate = function(day){
+        this.firstSurface.setContent('In date ' + day + '/9 .Select the locations you would like to have dinner');
+    };
 
     module.exports = LocationView;
 });
