@@ -11,6 +11,7 @@ define(function(require, exports, module) {
 
     function PreferenceView(options) {
         this.collection = options.collection;
+        this.itemCount = 0;
         View.apply(this, arguments);
         _createViews.call(this);
         _setListeners.call(this);
@@ -36,7 +37,8 @@ define(function(require, exports, module) {
         this.scrollviewMod = new StateModifier({
             align: [.5,.5],
             origin: [.5,.5],
-            size: [undefined, undefined]
+            size: [undefined, undefined],
+//            transform: Transform.translate(0, 0, 10)
         });
         this.scrollview.sequenceFrom(this.itemViews);
         this.scrollview.outputFrom(function(offset) {
@@ -76,6 +78,9 @@ define(function(require, exports, module) {
     }
 
     function _setListeners(){
+
+
+
         this.nextButton.on('click', function(){
             this._eventOutput.emit('confirm', {preference: "some "});
         }.bind(this));
@@ -84,9 +89,24 @@ define(function(require, exports, module) {
         }.bind(this));
 
         this.collection.on('all', function(event, model, collection){
-            console.log(event, model);
+//            console.log(event, model);
             if(event === 'add'){
-                this.itemViews.push(new ItemView());
+                var item = new ItemView();
+
+                this.itemViews.push(item);
+                item._eventOutput.on('click', function(){
+                    if(item.isPreferred) {
+                        item.isPreferred = false;
+                        item.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+                    }
+                    else {
+                        item.isPreferred = true;
+                        item.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">a</div>");
+                    }
+
+
+                }.bind(this));
+                this.itemCount++;
             }
             if(event === 'reset'){
                 while(this.itemViews.length > 0){
@@ -94,8 +114,13 @@ define(function(require, exports, module) {
                 }
             }
         }.bind(this));
+
+
         Engine.pipe(this.scrollview);
+
     }
+
+
 
     module.exports = PreferenceView;
 });
