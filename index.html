@@ -13,25 +13,29 @@
         <script type="text/javascript" src="src/libs/requestAnimationFrame.js"></script>
 
         <!-- module loader -->
-        <script type="text/javascript" src="src/libs/require.js"></script>
+        <script src="src/libs/require.js"></script>
+
 
         <!-- famous -->
         <link rel="stylesheet" type="text/css" href="src/styles/famous.css" />
-        <link href="src/styles/font-awesome.min.css" rel="stylesheet">
+        <link href="src/styles/font-awesome.css" rel="stylesheet">
         <script type="text/javascript" src="src/libs/famous.min.js"></script>
-        <script src="src/libs/jquery.min.js"></script>
-        <script type="text/javascript" src="src/libs/underscore.js"></script>
-        <script type="text/javascript" src="src/libs/backbone.js"></script>
+        <!--<script type="text/javascript" src="src/libs/underscore.js"></script>-->
+        <!--<script type="text/javascript" src="src/libs/backbone.js"></script>-->
         <script type="text/javascript" src="cordova.js"></script>
 
 
         <!-- app code -->
         <link rel="stylesheet" type="text/css" href="css/app.css" />
         <script type="text/javascript">
-            require.config({
-                baseUrl: './src/'
+
+            require(['src/libs/underscore.js', 'src/libs/backbone.js', 'src/libs/jquery.min.js'], function(){
+                require.config({
+                    baseUrl: './src/'
+                });
+                require(['main']);
             });
-            require(['main']);
+
         </script>
     </head>
     <body></body>
