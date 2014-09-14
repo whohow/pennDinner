@@ -17,6 +17,22 @@ define(function(require, exports, module) {
     TimeView.DEFAULT_OPTIONS = {};
 
     function _createViews(){
+        var surfaceMod = new StateModifier({
+           align: [0.5, 0.04],
+           origin: [.5,.5]
+        });
+
+        var firstSurface = new Surface({
+            content: 'hello world',
+            size:[window.innerWidth, 40],
+            properties: {
+                size: [undefined, undefined],
+                color: 'white',
+                textAlign: 'center',
+                backgroundColor: '#FA5C4F'
+            }
+        });
+        this.add(surfaceMod).add(firstSurface);
         var grid = new GridLayout({
             dimensions: [7, 4]
         });
