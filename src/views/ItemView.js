@@ -5,8 +5,9 @@ define(function(require, exports, module) {
     var StateModifier = require('famous/modifiers/StateModifier');
     var ImageSurface    = require('famous/surfaces/ImageSurface');
 
-    function ItemView() {
+    function ItemView(options) {
         View.apply(this, arguments);
+        this.model = options.model;
         this.mod = new StateModifier({
             align: [.5,.5],
             origin: [.5,.5]
@@ -18,7 +19,6 @@ define(function(require, exports, module) {
             content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>",
             size: [undefined, 100],
             properties: {
-                color: 'transparent',
                 textAlign: 'center',
                 backgroundColor: 'transparent'
             }
@@ -28,10 +28,10 @@ define(function(require, exports, module) {
 
 
         if(this.isPreferred) {
-            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
         }
         else {
-            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
         }
 
         _setListeners.call(this);

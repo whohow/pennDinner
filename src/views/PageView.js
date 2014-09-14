@@ -125,6 +125,17 @@ define(function(require, exports, module) {
         });
         this.layout.content.add(this.lightbox);
         this.lightbox.show(this.requestDinnerView);
+        setTimeout(function(){
+            $.get('src/data/preferenceData.json', function(data){
+                this.confirmedCollection.add(data);
+            }.bind(this))
+        }.bind(this), 1000);
+
+        setTimeout(function(){
+            $.get('src/data/preferenceData.json', function(data){
+                this.pendingCollection.add(data);
+            }.bind(this))
+        }.bind(this), 1000);
     }
 
     function _setListeners() {

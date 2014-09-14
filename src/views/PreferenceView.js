@@ -27,9 +27,9 @@ define(function(require, exports, module) {
     function _createViews(){
 
         this.itemViews = [];
-        this.itemViews.push(new ItemView());
-        this.itemViews.push(new ItemView());
-        this.itemViews.push(new ItemView());
+//        this.itemViews.push(new ItemView());
+//        this.itemViews.push(new ItemView());
+//        this.itemViews.push(new ItemView());
 
         this.scrollview = new Scrollview({
             direction: Utility.Direction.Y
@@ -91,7 +91,7 @@ define(function(require, exports, module) {
         this.collection.on('all', function(event, model, collection){
 //            console.log(event, model);
             if(event === 'add'){
-                var item = new ItemView();
+                var item = new ItemView({model: model});
 
                 this.itemViews.push(item);
                 item._eventOutput.on('click', function(){
