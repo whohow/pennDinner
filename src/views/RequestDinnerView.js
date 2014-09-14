@@ -43,22 +43,16 @@ define(function(require, exports, module) {
         this.mods.push(new Modifier({
             transform: function(){
                 return Transform.translate(this.transitionable.get() * window.innerWidth, 0, 0)
-            }.bind(this),
-
-            opacity: function(){
-                var result = (this.transitionable.get() + 1);
-                if(result < 0) return 0;
-                return result;
             }.bind(this)
         }));
         this.mods.push(new Modifier({
             transform: function(){
-                return Transform.translate((this.transitionable.get()+1) * window.innerWidth, 0, 0);
+                return Transform.translate((this.transitionable.get() + 1) * window.innerWidth, 0, 0);
             }.bind(this)
         }));
         this.mods.push(new Modifier({
             transform: function(){
-                return Transform.translate((this.transitionable.get()+2) * window.innerWidth, 0, 0);
+                return Transform.translate((this.transitionable.get() + 2) * window.innerWidth, 0, 0);
             }.bind(this)
         }));
         for(var i = 0; i < 3; ++i){
@@ -97,7 +91,7 @@ define(function(require, exports, module) {
             this.data.push(data);
 
             this.transitionable.set(--this.index, {
-                        duration: 300,
+                        duration: 500,
                         curve: 'easeOut'
             });
 
@@ -118,7 +112,7 @@ define(function(require, exports, module) {
         }.bind(this));
         this.on('pre', function(data){
             this.transitionable.set(++this.index, {
-                duration: 300,
+                duration: 500,
                 curve: 'easeOut'
             });
             console.log(data);
@@ -128,9 +122,10 @@ define(function(require, exports, module) {
 //            this.lightbox1.show(this.views[(--this.index + this.views.length) % this.views.length])
         }.bind(this));
         this.on('confirm', function(data){
-            this.index = 0;
-            this.transitionable.set(this.index, {
-                duration: 300,
+            this.index = -1;
+            this.transitionable.set(this.index);
+            this.transitionable.set(++this.index, {
+                duration: 500,
                 curve: 'easeOut'
             });
             console.log(data);
