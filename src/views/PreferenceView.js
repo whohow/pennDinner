@@ -45,10 +45,10 @@ define(function(require, exports, module) {
         this.add(this.scrollviewMod).add(this.scrollview);
 
         this.nextMod = new StateModifier({
-            align: [0.75, 0.85]
+            align: [0.745, 0.885]
         });
         this.nextButton = new Surface({
-            content: "<i class='fa fa-chevron-right fa-4x'></i>",
+            content: "<i class='fa fa-check-circle-o fa-3x'></i>",
             size:[90, 70],
             properties:{
                 zIndex: 10,
@@ -59,10 +59,10 @@ define(function(require, exports, module) {
             }
         });
         this.preMod = new StateModifier({
-            align: [0.25, 0.85]
+            align: [0.25, 0.9]
         });
         this.preButton = new Surface({
-            content: "<i class='fa fa-chevron-left fa-4x'></i>",
+            content: "<i class='fa fa-chevron-left fa-2x'></i>",
             size:[100, 70],
             properties:{
                 zIndex: 10,

@@ -27,9 +27,9 @@ define(function(require, exports, module) {
             size:[window.innerWidth, 40],
             properties: {
                 size: [undefined, undefined],
-                color: 'white',
+                color: 'black',
                 textAlign: 'center',
-                backgroundColor: '#FA5C4F'
+                backgroundColor: 'transparent'
             }
         });
         this.add(surfaceMod).add(firstSurface);
@@ -72,11 +72,11 @@ define(function(require, exports, module) {
         this.add(stateModifier).add(grid);
 
         this.nextMod = new StateModifier({
-            align: [0.75, 0.85]
+            align: [0.75, 0.9]
         });
         this.nextButton = new Surface({
-            content: "<i class='fa fa fa-chevron-right fa-4x'></i>",
-            size:[100, 100],
+            content: "<i class='fa fa fa-chevron-right fa-2x'></i>",
+            size:[100, 70],
             properties:{
                 zIndex: 10,
 
