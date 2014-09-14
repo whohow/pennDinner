@@ -40,6 +40,11 @@ define(function(require, exports, module) {
             contentString = "";
         }
 
+        if(this.model.get('time')){
+            titleString = this.model.get('local') + "the date: " + this.model.get('time');
+            contentString = "Wait enough people to have a group...";
+        }
+
         if(this.model.get('restaurant')){
             this.firstSurface.on('click', function(){
                 if(this.isPreferred) {

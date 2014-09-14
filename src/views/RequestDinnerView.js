@@ -17,6 +17,7 @@ define(function(require, exports, module) {
 
     function RequestDinnerView() {
         View.apply(this, arguments);
+        this.firebase = new Firebase('https://flickering-fire-9520.firebaseio.com/pending');
         _createViews.call(this);
         _setListeners.call(this);
     }
@@ -131,16 +132,26 @@ define(function(require, exports, module) {
 //            this.lightbox1.show(this.views[(--this.index + this.views.length) % this.views.length])
         }.bind(this));
         this.on('confirm', function(data){
+            var obj = {};
+            obj[this.data[0].scheduledDate+"-"+this.data[1].scheduledLocation] = {};
+            this.firebase.update(obj);
             this.index = -1;
             this.transitionable.set(this.index);
             this.transitionable.set(++this.index, {
                 duration: 500,
                 curve: 'easeOut'
             });
-            console.log(data);
 
+            var fire = new Firebase('https://flickering-fire-9520.firebaseio.com/pending' + this.data[0].scheduledDate+"-"+this.data[1].scheduledLocation);
+            pendingCollection.add([{"time": this.data[0].scheduledDate, local: this.data[1].scheduledLocation}]);
+            fire.on('child_added', function(snap){
+                console.log(snap, snap.val());
+            });
+            while(this.data.length > 0){
+                this.data.pop();
+            }
             // send request to server with data
-        })
+        });
     }
 
     module.exports = RequestDinnerView;

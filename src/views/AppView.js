@@ -22,6 +22,13 @@ define(function(require, exports, module) {
 
 
     function AppView() {
+        if(localStorage.getItem('dinnerId') == null){
+            var random = Math.floor((Math.random() * 1000000) + 1);
+            localStorage.setItem("dinnerId", random);
+
+        }
+        // super super I do not want to comment
+        window.dinnerId = localStorage.getItem('dinnerId');
         this.isLoged = false;
         View.apply(this, arguments);
 

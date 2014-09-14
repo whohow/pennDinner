@@ -119,23 +119,25 @@ define(function(require, exports, module) {
         this.requestDinnerView = new RequestDinnerView();
         this.confirmedDinnerView = new ConfirmedDinnerView({collection: this.confirmedCollection});
         this.pendingDinnerView = new PendingDinnerView({collection: this.pendingCollection});
+        window.pendingCollection = this.pendingCollection;
+        window.confirmedCollection = this.confirmedCollection;
         this.lightbox = new Lightbox({
             inTransform: Transform.translate(0, 0),
             outTransform: Transform.translate(0, 0)
         });
         this.layout.content.add(this.lightbox);
         this.lightbox.show(this.requestDinnerView);
-        setTimeout(function(){
-            $.get('src/data/preferenceData.json', function(data){
-                this.confirmedCollection.add(data);
-            }.bind(this))
-        }.bind(this), 1000);
-
-        setTimeout(function(){
-            $.get('src/data/preferenceData.json', function(data){
-                this.pendingCollection.add(data);
-            }.bind(this))
-        }.bind(this), 1000);
+//        setTimeout(function(){
+//            $.get('src/data/preferenceData.json', function(data){
+//                this.confirmedCollection.add(data);
+//            }.bind(this))
+//        }.bind(this), 1000);
+//
+//        setTimeout(function(){
+//            $.get('src/data/preferenceData.json', function(data){
+//                this.pendingCollection.add(data);
+//            }.bind(this))
+//        }.bind(this), 1000);
     }
 
     function _setListeners() {
