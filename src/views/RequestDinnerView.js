@@ -108,7 +108,8 @@ define(function(require, exports, module) {
 //                var str = JSON.stringfy(this.data);
                 // TODO put the data on the request
                 $.get("./src/data/restaurant.json", function(d){
-                    console.log(this.data[this.data.length - 1]);
+                    console.log(d[data.scheduledLocation]);
+                    this.preferenceCollection.add(d[data.scheduledLocation]);
                 }.bind(this));
             }
 //            this.lightbox1.hide();

@@ -1,25 +1,25 @@
 {
     "University City":[
         {
-            "sang kee noodle house philadelphia": ""
+            "restaurant":"sang kee noodle house philadelphia"
         },
 
         {
-            "han-dynasty-philadelphia": ""
+            "restaurant": "han dynasty philadelphia"
         },
 
         {
-            "guacamole-mex-grill": ""
+            "restaurant": "guacamole mex grill"
         },
         {
-            "pari cafe creperie": ""
+            "restaurant": "pari cafe creperie"
         },
 
         {
-            "white-dog-cafe-philadelphia": ""
+            "restaurant": "white dog cafe philadelphia"
         },
         {
-            " world-cafe-live-philadelphia": ""
+            "restaurant": "world cafe live philadelphia"
         }
     ],
 
@@ -28,55 +28,55 @@
 
 
         {
-            "kilimandjaro restaurant": ""
+            "restaurant":"kilimandjaro restaurant"
         },{
-            "desi chaat house": ""
+            "restaurant": "desi chaat house"
         },{
-            "kabobeesh philadelphia": ""
+            "restaurant": "kabobeesh philadelphia"
         },{
-            "le-bercail-restaurant": ""
+            "restaurant": "le-bercail-restaurant"
         },{
-            "distrito-philadelphia": ""
+            "restaurant": "distrito-philadelphia"
         },{
-            "local-44":""
+            "restaurant": "local-44"
         },{
-            "vietnam cafe philadelphia": ""
+            "restaurant": "vietnam cafe philadelphia"
         }
     ],
 
     "Rittenhouse Square":[
         {
-            "spice end": ""
+            "restaurant": "spice end"
         },{
-           " nodding head brewery and restaurant": "'"
+            "restaurant": "nodding head brewery and restaurant"
         },{
-            "aqua asian bistro": ""
+            "restaurant": "aqua asian bistro"
         },{
-            "almaz cafe": ""
+            "restaurant": "almaz cafe"
         },{
-            "food and friends": ""
+            "restaurant": "food and friends"
         },{
-            "shake shack": ""
+            "restaurant": "shake shack"
         },{
-            "max brenner": ""
+            "restaurant": "max brenner"
         }
     ],
 
     "China Town": [
         {
-            "rangoon burmese restaurant": ""
+            "restaurant": "rangoon burmese restaurant"
         },{
-            "penang philadelphia": ""
+            "restaurant": "penang philadelphia"
         },{
-            "sang kee peking duck house philadelphia": ""
+            "restaurant": "sang kee peking duck house philadelphia"
         },{
-            "shiao lan kung philadelphia":""
+            "restaurant": "shiao lan kung philadelphia"
         },{
-            "ho sai gai restaurant philadelphia-3":""
+            "restaurant": "ho sai gai restaurant philadelphia-3"
         },{
-            "pho-xe lua viet thai restaurant philadelphia": ""
+            "restaurant": "pho-xe lua viet thai restaurant philadelphia"
         },{
-            "banana-leaf-philadelphia": ""
+            "restaurant": "banana-leaf-philadelphia"
         }
     ]
 }

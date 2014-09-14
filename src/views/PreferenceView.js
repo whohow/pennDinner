@@ -111,18 +111,18 @@ define(function(require, exports, module) {
                 var item = new ItemView({model: model});
 
                 this.itemViews.push(item);
-                item._eventOutput.on('click', function(){
-                    if(item.isPreferred) {
-                        item.isPreferred = false;
-                        item.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
-                    }
-                    else {
-                        item.isPreferred = true;
-                        item.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">a</div>");
-                    }
+//                item._eventOutput.on('click', function(){
+//                    if(item.isPreferred) {
+//                        item.isPreferred = false;
+//                        item.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+//                    }
+//                    else {
+//                        item.isPreferred = true;
+//                        item.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">a</div>");
+//                    }
 
-
-                }.bind(this));
+//
+//                }.bind(this));
                 this.itemCount++;
             }
             if(event === 'reset'){

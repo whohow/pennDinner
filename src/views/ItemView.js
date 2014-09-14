@@ -16,7 +16,7 @@ define(function(require, exports, module) {
         this.isPreferred = false;
 
         this.firstSurface = new Surface({
-            content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" class=\"card\" style=\"height:100px\">div with background</div>",
+//            content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" class=\"card\" style=\"height:100px\">div with background</div>",
             size: [undefined, 100],
             properties: {
                 textAlign: 'center',
@@ -35,10 +35,33 @@ define(function(require, exports, module) {
             contentString = "";
         }
 
+        if(this.model.get('restaurant')){
+            titleString = this.model.get('restaurant');
+            contentString = "";
+        }
+
+        if(this.model.get('restaurant')){
+            this.firstSurface.on('click', function(){
+                if(this.isPreferred) {
+                    this.isPreferred = false;
+                    this.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: rgb(255, 153, 0);box-shadow: 1px 1px 1px #888888;}</style><div align=\"left\"; class=\"intermPreferred\"><div style=\"margin-left:10px;\"><h3 style=\"padding-top:10px;\">" + titleString + "</h3><p style=\"margin-top:-10px;\">" + contentString + "</p><i class=\"fa fa-thumbs-up\"></i></div></div>");
+//            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
+                }
+                else {
+                    this.isPreferred = true;
+                    this.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: rgb(255, 153, 0);box-shadow: 1px 1px 1px #888888;}</style><div align=\"left\"; class=\"intermPreferred\"><div style=\"margin-left:10px;\"><h3 style=\"padding-top:10px;\">" + titleString + "</h3><p style=\"margin-top:-10px;\">" + contentString + "</p></div></div>");
+                }
+
+            }.bind(this));
+        }
+
         if(this.isPreferred) {
-            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
+            this.isPreferred = false;
+            this.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: rgb(255, 153, 0);box-shadow: 1px 1px 1px #888888;}</style><div align=\"left\"; class=\"intermPreferred\"><div style=\"margin-left:10px;\"><h3 style=\"padding-top:10px;\">" + titleString + "</h3><p style=\"margin-top:-10px;\">" + contentString + "</p></div></div>");
+//            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
         }
         else {
+            this.isPreferred = true;
             this.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: rgb(255, 153, 0);box-shadow: 1px 1px 1px #888888;}</style><div align=\"left\"; class=\"intermPreferred\"><div style=\"margin-left:10px;\"><h3 style=\"padding-top:10px;\">" + titleString + "</h3><p style=\"margin-top:-10px;\">" + contentString + "</p></div></div>");
         }
 
