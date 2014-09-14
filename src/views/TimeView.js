@@ -17,6 +17,7 @@ define(function(require, exports, module) {
     TimeView.DEFAULT_OPTIONS = {};
 
     function _createViews(){
+        this.recent = null;
         var surfaceMod = new StateModifier({
            align: [0.5, 0.117],
            origin: [.5,.5]
@@ -98,11 +99,17 @@ define(function(require, exports, module) {
         _.each(this.surfaces, function(surface){
             surface.on('click', function(){
                 var string = surface.getContent();
+                if(surface.getProperties().backgroundColor == "#82FA58") return ;
                 this._eventOutput.emit('next', {scheduledDate: string});
+                surface.setProperties({backgroundColor: "#82FA58"});
+                this.recent = surface;
             }.bind(this))
         }.bind(this))
 
     }
+    TimeView.prototype.cancel = function(){
+        this.recent.setProperties({backgroundColor: 'transparent'});
+    };
 
     module.exports = TimeView;
 });

@@ -122,7 +122,10 @@ define(function(require, exports, module) {
                 curve: 'easeOut'
             });
             console.log(data);
-//            this.data.pop();
+            if(this.data[this.data.length - 1].scheduledDate){
+                this.timeView.cancel();
+            }
+            this.data.pop();
 ////            this.scrollview.goToPreviousPage();
 //            this.lightbox1.hide();
 //            this.lightbox1.show(this.views[(--this.index + this.views.length) % this.views.length])
