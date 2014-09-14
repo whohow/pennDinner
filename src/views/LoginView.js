@@ -87,7 +87,6 @@ define(function(require, exports, module) {
         this.hamburgerSurface.on('click', function(){
             this._eventOutput.emit("logedIn", {userName: this.inputSurface.getValue(), passWord: this.inputSurface2.getValue()})
         }.bind(this));
-
     }
 
     LoginView.prototype = Object.create(View.prototype);

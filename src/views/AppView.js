@@ -159,6 +159,7 @@ define(function(require, exports, module) {
         });
         this.add(this.loginMod).add(this.loginView);
     }
+
     AppView.prototype.toggleMenu = function() {
         if(this.menuToggle) {
             this.slideLeft();

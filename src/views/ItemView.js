@@ -7,18 +7,48 @@ define(function(require, exports, module) {
 
     function ItemView() {
         View.apply(this, arguments);
-        var firstSurface = new Surface({
+        this.mod = new StateModifier({
+            align: [.5,.5],
+            origin: [.5,.5]
+        });
+
+        this.isPreferred = false;
+
+        this.firstSurface = new Surface({
             content: "<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>",
             size: [undefined, 100],
             properties: {
-                size: [undefined, undefined],
-                color: 'white',
+                color: 'transparent',
                 textAlign: 'center',
                 backgroundColor: 'transparent'
             }
         });
-        this.add(firstSurface);
+        this.add(this.firstSurface);
+
+
+
+        if(this.isPreferred) {
+            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+        }
+        else {
+            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">div with background</div>");
+        }
+
+        _setListeners.call(this);
+
+
     }
+
+
+    function _setListeners(){
+        this.firstSurface.pipe(this._eventOutput);
+        this.firstSurface.on('click', function(){
+            this._eventOutput.emit("preferred")
+        }.bind(this));
+    }
+
+
+
 
 
     ItemView.prototype = Object.create(View.prototype);

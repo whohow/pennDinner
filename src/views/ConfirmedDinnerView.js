@@ -8,7 +8,6 @@ define(function(require, exports, module) {
 
     var EventsList = require('collections/EventsList');
     var ItemView = require('views/ItemView');
-    var ItemView2 = require('views/ItemView2');
     var Utility = require('famous/utilities/Utility');
 
 
@@ -59,8 +58,24 @@ define(function(require, exports, module) {
                 }
             }
         }.bind(this));
+
         Engine.pipe(this.scrollview);
+
+         for (var i = 0; i < this.itemViews.length; i++) {
+             Wrapper(i).call(this);
+         }
     }
+
+    function Wrapper(i){
+        return function(){
+            this.itemViews[i].on('preferred', function(data){
+                this.itemViews[i].isPreferred = true;
+                this.itemViews[i].firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">a</div>");
+            }.bind(this));
+
+        }
+    }
+
 
     module.exports = ConfirmedDinnerView;
 });
