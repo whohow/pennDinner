@@ -73,7 +73,7 @@ define(function(require, exports, module) {
 
         this.hamburgerSurface = new ImageSurface({
             size: [44, 44],
-            content : 'img/hamburger2.png'
+            content : 'img/hamburger.png'
         });
 
         var searchSurface = new ImageSurface({

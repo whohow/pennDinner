@@ -25,14 +25,27 @@ define(function(require, exports, module) {
         grid.sequenceFrom(surfaces);
 
         for(var i = 0; i < 28; i++) {
-            surfaces.push(new Surface({
-                content: "panel " + (i + 1),
-                size: [window.innerWidth / 7, window.innerHeight/ 10],
-                properties: {
-                    textAlign: 'center'
-                }
-            }));
+            if(i == 0) {
+                surfaces.push(new Surface({
+                    content: "",
+                    size: [window.innerWidth / 7, window.innerHeight/ 10],
+                    properties: {
+                        textAlign: 'center'
+                    }
+                }));
+            }
+            else {
+                surfaces.push(new Surface({
+                    content: "" + i,
+                    size: [window.innerWidth / 7, window.innerHeight/ 10],
+                    properties: {
+                        textAlign: 'center'
+                    }
+                }));
+            }
+
         }
+
 
         var stateModifier = new StateModifier({
             align: [.5 , .4],
@@ -65,9 +78,6 @@ define(function(require, exports, module) {
         this.nextButton.on('click', function(){
             this._eventOutput.emit('next', {scheduledDate: "some date"});
         }.bind(this));
-//        this.preButton.on('click', function(){
-//            this._eventOutput.emit('pre', "cancelDate");
-//        }.bind(this))
 
     }
 
