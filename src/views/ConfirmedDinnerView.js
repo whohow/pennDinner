@@ -43,7 +43,6 @@ define(function(require, exports, module) {
             return Transform.translate(0,offset);
         });
         this.add(this.scrollviewMod).add(this.scrollview);
-
     }
 
     function _setListeners(){
@@ -71,7 +70,7 @@ define(function(require, exports, module) {
         return function(){
             this.itemViews[i].on('preferred', function(data){
                 this.itemViews[i].isPreferred = true;
-                this.itemViews[i].firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\">a</div>");
+                this.itemViews[i].firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: lightblue;box-shadow: 1px 1px 1px #888888;}</style><div class=\"intermPreferred\"></div>");
             }.bind(this));
 
         }

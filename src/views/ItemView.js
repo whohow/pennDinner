@@ -24,14 +24,17 @@ define(function(require, exports, module) {
             }
         });
         this.add(this.firstSurface);
+//     this.model.get('title') return string of title
+        // content
 
-
+        var titleString = "Test Data A";
+        var contentString = "Test Content.";
 
         if(this.isPreferred) {
             this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_3.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
         }
         else {
-            this.firstSurface.setContent("<style type=\"text/css\">.bgimg {background-image: url(./img/event_5.png);}</style><div class=\"bgimg\" style=\"height:100px\">"+"test"+"</div>");
+            this.firstSurface.setContent("<style> .intermPreferred{width: 305px;height: 89px;margin-top: 5px;margin-left: auto;margin-right: auto;background-color: rgb(255, 153, 0);box-shadow: 1px 1px 1px #888888;}</style><div align=\"left\"; class=\"intermPreferred\"><div style=\"margin-left:10px;\"><h3 style=\"padding-top:10px;\">" + titleString + "</h3><p style=\"margin-top:-10px;\">" + contentString + "</p></div></div>");
         }
 
         _setListeners.call(this);

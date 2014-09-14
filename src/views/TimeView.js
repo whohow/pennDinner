@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 
     function _createViews(){
         var surfaceMod = new StateModifier({
-           align: [0.5, 0.13],
+           align: [0.5, 0.117],
            origin: [.5,.5]
         });
 

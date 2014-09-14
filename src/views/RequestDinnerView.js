@@ -33,7 +33,11 @@ define(function(require, exports, module) {
         this.mods = [];
         this.index = 0;
         this.preferenceCollection = new EventsList();
-        this.locationView = new LocationView();
+        this.locationCollection = new EventsList();
+        this.locationView = new LocationView({collection: this.locationCollection});
+        $.get('src/data/preferenceData.json', function(data){
+            this.locationCollection.add(data);
+        }.bind(this));
         this.timeView = new TimeView();
         this.preferenceView = new PreferenceView({collection:  this.preferenceCollection});
         this.views.push(this.timeView);

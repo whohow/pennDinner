@@ -26,16 +26,33 @@ define(function(require, exports, module) {
 
     function _createViews(){
 
+        var firstSurface = new Surface({
+            content: 'Select the preferences you would like to have dinner',
+            properties: {
+                size: [undefined, undefined],
+                color: 'black',
+                textAlign: 'center',
+                backgroundColor: 'transparent'
+            }
+        });
+
+        this.firstSurfaceMod = new StateModifier({
+            align: [.5,.58],
+            origin: [.5,.5],
+            size: [undefined, undefined]
+        });
+        this.add(this.firstSurfaceMod).add(firstSurface);
+
+
+
+
         this.itemViews = [];
-//        this.itemViews.push(new ItemView());
-//        this.itemViews.push(new ItemView());
-//        this.itemViews.push(new ItemView());
 
         this.scrollview = new Scrollview({
             direction: Utility.Direction.Y
         });
         this.scrollviewMod = new StateModifier({
-            align: [.5,.5],
+            align: [.5,.7],
             origin: [.5,.5],
             size: [undefined, undefined],
 //            transform: Transform.translate(0, 0, 10)
